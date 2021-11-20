@@ -1,45 +1,43 @@
+import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 
-void main() => runApp(const App());
+void main() {
+  runApp(const BasicPhrases());
+}
 
-class App extends StatelessWidget {
-  const App({Key? key}) : super(key: key);
+class BasicPhrases extends StatelessWidget {
+  const BasicPhrases({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.amber,
-          centerTitle: true,
-          title: const Text('Basic Phrases'),
-        ),
-        body: const MyApp(),
-      ),
+      home: BasicPhrasesSts(),
     );
   }
 }
 
-class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
+class BasicPhrasesSts extends StatefulWidget {
+  const BasicPhrasesSts({Key? key}) : super(key: key);
 
   @override
-  State<MyApp> createState() => _MyAppState();
+  _BasicPhrasesStsState createState() => _BasicPhrasesStsState();
 }
 
-class _MyAppState extends State<MyApp> {
+class _BasicPhrasesStsState extends State<BasicPhrasesSts> {
   final FlutterTts flutterTts = FlutterTts();
-
-  final ButtonStyle _buttonStyle = ElevatedButton.styleFrom(
-    primary: Colors.amber,
-    alignment: Alignment.center,
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(10.0),
-    ),
-  );
+  var myText = [
+    {'id': 0, 'name': 'Salut', 'text': 'Salut'},
+    {'id': 1, 'name': 'Salut (Spaniola)', 'text': 'Hola'},
+    {'id': 2, 'name': 'Ce faci?', 'text': 'Ce faci?'},
+    {'id': 3, 'name': 'Ce faci (Spaniola)', 'text': 'Como estas?'},
+    {'id': 4, 'name': 'Unde este metroul', 'text': 'Unde este metroul'},
+    {'id': 5, 'name': 'Unde este metroul (Spaniola)', 'text': 'Donde esta el metro?'},
+    {'id': 6, 'name': 'La revedere', 'text': 'La revedere'},
+    {'id': 7, 'name': 'La revedere (Spaniola)', 'text': 'Hasta la vista Beiby'}
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -60,96 +58,36 @@ class _MyAppState extends State<MyApp> {
       await flutterTts.speak(text);
     }
 
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Container(
-        alignment: Alignment.center,
-        child: GridView.count(
-          crossAxisCount: 2,
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8),
-              child: ElevatedButton(
-                onPressed: () {
-                  _speak('ro', 'Salut');
-                },
-                child: const Text('Salut'),
-                style: _buttonStyle,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8),
-              child: ElevatedButton(
-                onPressed: () {
-                  _speak('es', 'Hola');
-                },
-                child: const Text('Salut (Spaniola)'),
-                style: _buttonStyle,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8),
-              child: ElevatedButton(
-                onPressed: () {
-                  _speak('ro', 'Ce faci?');
-                },
-                child: const Text('Ce faci?'),
-                style: _buttonStyle,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8),
-              child: ElevatedButton(
-                onPressed: () {
-                  _speak('es', 'Que tal?');
-                },
-                child: const Text('Ce faci? (Spaniola)'),
-                style: _buttonStyle,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8),
-              child: ElevatedButton(
-                onPressed: () {
-                  _speak('ro', 'Unde este metroul?');
-                },
-                child: const Text('Unde este metroul?'),
-                style: _buttonStyle,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8),
-              child: ElevatedButton(
-                onPressed: () {
-                  _speak('es', 'Dónde está el metro?');
-                },
-                child: const Text('Unde este metroul? (Spaniola)'),
-                style: _buttonStyle,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8),
-              child: ElevatedButton(
-                onPressed: () {
-                  _speak('ro', 'La revedere!');
-                },
-                child: const Text('La revedere!'),
-                style: _buttonStyle,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8),
-              child: ElevatedButton(
-                onPressed: () {
-                  _speak('es', 'Hasta la vista beiby!');
-                },
-                child: const Text('La revedere! (Spaniola)'),
-                style: _buttonStyle,
-              ),
-            ),
-          ],
-        ),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Basic Phrases'),
       ),
+      body: GridView.builder(
+          padding: const EdgeInsets.all(20),
+          gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+              maxCrossAxisExtent: 200, childAspectRatio: 3 / 2, crossAxisSpacing: 20, mainAxisSpacing: 20),
+          itemCount: myText.length,
+          itemBuilder: (BuildContext ctx, index) {
+            return GestureDetector(
+              child: Container(
+                alignment: Alignment.center,
+                child: Text(
+                  myText[index]["name"],
+                  textAlign: TextAlign.center,
+                ),
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      begin: Alignment.bottomLeft,
+                      end: Alignment.topRight,
+                      colors: [Colors.amber, Colors.amber.shade100]),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+              onTap: () {
+                index.isEven ? _speak('ro', myText[index]["text"]) : _speak('es', myText[index]["text"]);
+              },
+            );
+          }),
     );
   }
 }
