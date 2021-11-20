@@ -1,5 +1,4 @@
-import 'dart:ui';
-import 'package:flutter/cupertino.dart';
+// import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 
@@ -28,15 +27,15 @@ class BasicPhrasesSts extends StatefulWidget {
 
 class _BasicPhrasesStsState extends State<BasicPhrasesSts> {
   final FlutterTts flutterTts = FlutterTts();
-  var myText = [
-    {'id': 0, 'name': 'Salut', 'text': 'Salut'},
-    {'id': 1, 'name': 'Salut (Spaniola)', 'text': 'Hola'},
-    {'id': 2, 'name': 'Ce faci?', 'text': 'Ce faci?'},
-    {'id': 3, 'name': 'Ce faci (Spaniola)', 'text': 'Como estas?'},
-    {'id': 4, 'name': 'Unde este metroul', 'text': 'Unde este metroul'},
-    {'id': 5, 'name': 'Unde este metroul (Spaniola)', 'text': 'Donde esta el metro?'},
-    {'id': 6, 'name': 'La revedere', 'text': 'La revedere'},
-    {'id': 7, 'name': 'La revedere (Spaniola)', 'text': 'Hasta la vista Beiby'}
+  List<Map<String, Object>> myText = <Map<String, Object>>[
+    <String, Object>{'id': 0, 'name': 'Salut', 'text': 'Salut'},
+    <String, Object>{'id': 1, 'name': 'Salut (Spaniola)', 'text': 'Hola'},
+    <String, Object>{'id': 2, 'name': 'Ce faci?', 'text': 'Ce faci?'},
+    <String, Object>{'id': 3, 'name': 'Ce faci (Spaniola)', 'text': 'Como estas?'},
+    <String, Object>{'id': 4, 'name': 'Unde este metroul', 'text': 'Unde este metroul'},
+    <String, Object>{'id': 5, 'name': 'Unde este metroul (Spaniola)', 'text': 'Donde esta el metro?'},
+    <String, Object>{'id': 6, 'name': 'La revedere', 'text': 'La revedere'},
+    <String, Object>{'id': 7, 'name': 'La revedere (Spaniola)', 'text': 'Hasta la vista beiby'}
   ];
 
   @override
@@ -67,24 +66,26 @@ class _BasicPhrasesStsState extends State<BasicPhrasesSts> {
           gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
               maxCrossAxisExtent: 200, childAspectRatio: 3 / 2, crossAxisSpacing: 20, mainAxisSpacing: 20),
           itemCount: myText.length,
-          itemBuilder: (BuildContext ctx, index) {
+          itemBuilder: (BuildContext ctx, int index) {
             return GestureDetector(
               child: Container(
                 alignment: Alignment.center,
-                child: Text(
-                  myText[index]["name"],
-                  textAlign: TextAlign.center,
-                ),
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                       begin: Alignment.bottomLeft,
                       end: Alignment.topRight,
-                      colors: [Colors.amber, Colors.amber.shade100]),
+                      colors: <Color>[Colors.amber, Colors.amber.shade100]),
                   borderRadius: BorderRadius.circular(10),
+                ),
+                child: Text(
+                  myText[index]['name'].toString(),
+                  textAlign: TextAlign.center,
                 ),
               ),
               onTap: () {
-                index.isEven ? _speak('ro', myText[index]["text"]) : _speak('es', myText[index]["text"]);
+                index.isEven
+                    ? _speak('ro', myText[index]['text'].toString())
+                    : _speak('es', myText[index]['text'].toString());
               },
             );
           }),
