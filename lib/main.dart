@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 
@@ -16,20 +17,27 @@ class App extends StatelessWidget {
           centerTitle: true,
           title: const Text('Basic Phrases'),
         ),
-        body: MyApp(),
+        body: const MyApp(),
       ),
     );
   }
 }
 
-class MyApp extends StatelessWidget {
-  MyApp({Key? key}) : super(key: key);
+class MyApp extends StatefulWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   final FlutterTts flutterTts = FlutterTts();
 
   final ButtonStyle _buttonStyle = ElevatedButton.styleFrom(
     primary: Colors.amber,
+    alignment: Alignment.center,
     shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(20.0),
+      borderRadius: BorderRadius.circular(10.0),
     ),
   );
 
@@ -133,7 +141,7 @@ class MyApp extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8),
               child: ElevatedButton(
                 onPressed: () {
-                  _speak('es', 'Hasta luego!');
+                  _speak('es', 'Hasta la vista beiby!');
                 },
                 child: const Text('La revedere! (Spaniola)'),
                 style: _buttonStyle,
