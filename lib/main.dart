@@ -87,7 +87,6 @@ class _BasicPhrasesStsState extends State<BasicPhrasesSts> {
                   myText[index]['name'].toString(),
                   textAlign: TextAlign.center,
                   style: myFont,
-                  // TextStyle(color: Colors.white, fontSize: 20.0, fontFamily: 'Teko'),
                 ),
               ),
               onTap: () {
