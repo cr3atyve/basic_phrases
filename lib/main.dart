@@ -1,6 +1,3 @@
-import 'dart:ui';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -36,7 +33,7 @@ class _BasicPhrasesStsState extends State<BasicPhrasesSts> {
     <String, Object>{'id': 0, 'name': 'Salut', 'text': 'Salut'},
     <String, Object>{'id': 1, 'name': 'Salut (Spaniola)', 'text': 'Hola'},
     <String, Object>{'id': 2, 'name': 'Ce faci?', 'text': 'Ce faci?'},
-    <String, Object>{'id': 3, 'name': 'Ce faci (Spaniola)', 'text': 'Como estas?'},
+    <String, Object>{'id': 3, 'name': 'Ce faci? (Spaniola)', 'text': 'cómo estás?'},
     <String, Object>{'id': 4, 'name': 'Unde este metroul?', 'text': 'Unde este metroul?'},
     <String, Object>{'id': 5, 'name': 'Unde este metroul? (Spaniola)', 'text': 'Donde esta el metro?'},
     <String, Object>{'id': 8, 'name': 'Cat e ceasul?', 'text': 'Cât e ceasul?'},
@@ -66,6 +63,7 @@ class _BasicPhrasesStsState extends State<BasicPhrasesSts> {
 
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: const Text('Basic Phrases'),
         backgroundColor: Colors.amber,
       ),
