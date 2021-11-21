@@ -14,12 +14,14 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter_tts: ^3.2.2
   google_fonts: ^2.1.0
+  flutter_web_plugins:
+    sdk: flutter
   
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
+  all_lint_rules_community: ^0.0.3
 
 
 
